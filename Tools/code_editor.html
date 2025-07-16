@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free online Code Editor..">
+  <meta name="keywords" content="code, editor, spicy444, online editor, fun, improve mind power, code editer online, code editor free, code editor for beginners, code editor for professionals, code editor for web development">
+  <meta name="author" content="Spicy444">
+  <title>Spicy444 Code Editor</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="">
+  <link rel="scripts" href="">
+</head>
+<body>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    /* Editor Container */
+    .editor-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: #1e1e1e;
+      border-right: 1px solid #333;
+    }
+
+    /* Editor Tabs */
+    .editor-tabs {
+      display: flex;
+      background: #252526;
+    }
+
+    .editor-tab {
+      padding: 10px 20px;
+      background: #2d2d2d;
+      color: #ccc;
+      cursor: pointer;
+      border-right: 1px solid #1e1e1e;
+    }
+
+    .editor-tab.active {
+      background: #1e1e1e;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Editor Content */
+    .editor-content {
+      flex: 1;
+      position: relative;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 14px;
+      border: none;
+      resize: none;
+      background: #1e1e1e;
+      color: #d4d4d4;
+    }
+
+    /* Preview Container */
+    .preview-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #preview {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      padding: 10px;
+      background: #252526;
+    }
+
+    .run-button {
+      padding: 8px 16px;
+      background: #3e63eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    /* Effect controls (now in preview) */
+    .effect-controls {
+      display: flex;
+      gap: 5px;
+      padding: 10px;
+      background: #333;
+      justify-content: center;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    input[type="radio"] + label {
+      padding: 8px 12px;
+      background: #444;
+      color: #ddd;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    input[type="radio"]:checked + label {
+      background: #2196F3;
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+      .editor-container {
+        border-right: none;
+        border-bottom: 1px solid #333;
+      }
+    }
+  </style>
+  <div class="editor-container">
+    <div class="controls">
+      <button class="run-button">Run ▶</button>
+    </div>
+
+    <div class="editor-tabs">
+      <div class="editor-tab active">HTML</div>
+      <div class="editor-tab">CSS</div>
+      <div class="editor-tab">JS</div>
+    </div>
+
+    <div class="editor-content">
+    <textarea id="html-code"><!-- HTML -->
+<header class="site-header">
+  <div class="effect-controls">
+    <input type="radio" id="preview-blink-effect" name="preview-effect" value="blink" checked>
+    <label for="preview-blink-effect">Blink</label>
+    <input type="radio" id="preview-horizontal-effect" name="preview-effect" value="horizontal">
+    <label for="preview-horizontal-effect">Horizontal</label>
+    <input type="radio" id="preview-zoom-effect" name="preview-effect" value="zoom">
+    <label for="preview-zoom-effect">Zoom</label>
+  </div>
+  
+  <nav>
+  <ul class="indicator">
+    <li><a href="#snapping"><span class="sr-only">Snapping</span></a></li>
+    <li><a href="#scrolling"><span class="sr-only">Scrolling</span></a></li>
+    <li><a href="#layout"><span class="sr-only">Layout</span></a></li>
+    <li><a href="#transition"><span class="sr-only">Transition</span></a></li>
+    <li><a href="#caveats"><span class="sr-only">Caveats</span></a></li>
+  
+  </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="snapping" class="section">
+    <div class="content">
+      <h2><strong>First</strong>, set up <em>snapping</em></h2>
+      <div class="text">
+        <img src="https://assets.codepen.io/197359/flower-white.png" alt="">
+        <p>Use scroll-snap-type and scroll-snap-align.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="scrolling" class="section">
+      <div class="content">
+        <h2><strong>Next</strong>, we set up the <em>scrolling</em> animation</h2>
+
+        <div class="text">
+          <img src="https://assets.codepen.io/197359/flower-yellow.png" alt="">
+          <p>We track the <code class="property">view()</code> position of the <code class="selector">section</code> elements using the named timeline <code class="property">view-timeline: --section;</code>. We had previously set the <code class="property">timeline-scope: --section</code> up in our <code class="selector">HTML</code> element, so we can access it from anywhere in the document.</p>
+
+          <p>We animate the <code class="selector">.content</code> children using <code class="property">animation-timeline: --section;</code>. The <code class="selector">.content</code> element will now animate based on its parent <code class="selector">section</code>'s position. This is important due to how we're handling the layout in the next section.</p>
+        </div>
+      </div>
+    </section>
+  
+  <section id="layout" class="section">
+    <div class="content">
+      <h2><strong>Then</strong>, position <em>fixed</em> layout</h2>
+      <div class="text">
+        <img src="https://assets.codepen.io/197359/flower-blue.png" alt="">
+        <p>Content is position: fixed while sections remain in flow.</p>
+      </div>
+    </div>
+  </section>
+  
+    <section id="transition" class="section">
+      <div class="content">
+        <h2><strong>Finally</strong>, we create the <em>transition</em> effects</h2>
+
+        <div class="text">
+          <img src="https://assets.codepen.io/197359/flower-red.png" alt="">
+          <p>By setting the <code class="selector">.content</code> elements to <code class="property">position: fixed</code>, we can now transition between them without a visible scrolling movement.</p>
+
+          <p>We create a normal <code class="selector">@keyframe</code> animation to our liking to transition between them. Check the navigation menu to see different effects.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="caveats" class="section">
+      <div class="content">
+        <div class="text">
+          <img src="https://assets.codepen.io/197359/flower-purple.png" alt="">
+          <h2><strong>Caveats</strong></h2>
+          <ul>
+            <li>Scrolling animations are not currently available in Firefox. This demo is using a polyfill.</li>
+            <li>This layout is fragile due to the use of <code class="property">position: fixed</code>. You need to carefully manage stacking contexts.</li>
+            <li>Snapping points have their own caveats, such as content taller than the viewport becoming inaccessible, along with the general annoyance of scrolljacking.</li>
+            <li>The <code class="selector">blink</code> effect uses the <code class="property">contrast()</code> filter, which modifies the colors of the entire section. Thus, the background is set to black (or white), ensuring that it appears unchanged during transitions due to already being at maximum contrast.</li>
+            </ul>
+        </div>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Scroll-driven animations 🌸</p>
+</footer></textarea>
+
+<textarea id="css-code">/* CSS */
+@layer base, rhythm, layout, components, default, overwrites;
+html {
+  /* Create a timeline scope, so we can target any element on the page */
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  timeline-scope: --section, --main, --site-header;
+}
+
+body {
+  background: #1e1e1e;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  view-timeline: --section;
+  height: 100dvh;
+  position: relative;
+  
+}
+
+.content {
+  background: #1e1e1e;
+  position: fixed;
+  inset: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: blink ease-in-out both;
+  animation-timeline: --section;
+}
+
+.text {
+  max-width: 60ch;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text img {
+  width: 100px;
+  height: 100px;
+  margin: 2rem auto;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 200;
+  margin-bottom: 2rem;
+}
+
+h2 strong {
+  font-weight: 700;
+}
+
+h2 em {
+  font-style: italic;
+  color: #4fc3f7;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem;
+  background: rgba(0,0,0,0.7);
+}
+
+.effect-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.effect-controls label {
+  padding: 0.5rem 1rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.effect-controls input[type="radio"]:checked + label {
+  background: #4fc3f7;
+  color: #1e1e1e;
+}
+
+.indicator {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.indicator a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2rem;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 1rem;
+}
+
+.indicator::before {
+  animation: indicate linear both;
+  animation-timeline: --main;
+  animation-range: contain;
+}
+
+/* And we're manually setting the colors because see: lazy comment above */
+@keyframes indicate {
+  0% {
+    --color-indicator: var(--color-primary);
+    transform: translateY(0);
+  }
+
+  25% {
+    --color-indicator: var(--color-yellow);
+  }
+
+  50% {
+    --color-indicator: var(--color-secondary);
+  }
+
+  75% {
+    --color-indicator: var(--color-red);
+  }
+
+  100% {
+    --color-indicator: var(--color-purple);
+    transform: translateY(
+      calc(var(--indicator-total-height) - var(--indicator-size))
+    );
+  }
+}
+
+/* Remove gradient indicator on scroll-to-end (visible on small screens */
+
+.site-header label:last-of-type {
+  view-timeline: --site-header inline;
+}
+
+.site-header::after {
+  animation: fade-scroll ease-in-out both;
+  animation-timeline: --site-header;
+  animation-range: entry-crossing;
+}
+
+@keyframes fade-scroll {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Change animation based on radio checked */
+body:has([value="horizontal-scroll"]:checked) .content {  
+  animation: horizontal-scroll ease-in-out both;
+  animation-timeline: --section;
+}
+
+body:has([value="backwards-scroll"]:checked) .content {
+  animation: backwards-scroll ease-in-out both;
+  animation-timeline: --section;
+}
+
+body:has([value="zoom-scroll"]:checked) .content {
+  animation: zoom-scroll ease-in-out both;
+  animation-timeline: --section;
+}
+
+
+/* Animations */
+@keyframes blink {
+  0%,
+  100% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  50% {
+    filter: blur(0) contrast(1);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.indicator::before {
+  animation: indicate linear both;
+  animation-timeline: --main;
+  animation-range: contain;
+}
+
+@keyframes horizontal {
+  0% { transform: translateX(100%); }
+  50% { transform: none; }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes zoom {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: none; opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Effect classes */
+body.blink .content {
+  animation-name: blink;
+}
+
+body.horizontal .content {
+  animation-name: horizontal;
+}
+
+body.zoom .content {
+  animation-name: zoom;
+}</textarea>
+
+      <textarea id="js-code">// JavaScript
+// This script runs inside the preview iframe.
+
+// Load polyfill if needed
+if (!CSS.supports('animation-timeline: scroll()')) {
+  const script = document.createElement('script');
+  script.src = 'https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js';
+  document.head.appendChild(script);
+}
+
+function setupDynamicContent() {
+  // Handle effect selection
+  document.querySelectorAll('input[name="preview-effect"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      // 'document.body' refers to the iframe's body
+      document.body.className = this.value;
+    });
+  });
+  
+  // Smooth scroll for navigation
+  document.querySelectorAll('.indicator a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetSelector = this.getAttribute('href');
+      const targetElement = document.querySelector(targetSelector);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+}
+
+// The script runs after the body is parsed, so we can call the setup function directly.
+setupDynamicContent();</textarea>
+    </div>
+  </div>
+
+  <div class="preview-container">
+    <iframe id="preview"></iframe>
+  </div>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.editor-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Update active tab
+        document.querySelectorAll('.editor-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Show corresponding editor
+        const tabIndex = Array.from(this.parentElement.children).indexOf(this);
+        const textareas = document.querySelectorAll('.editor-content textarea');
+        
+        textareas.forEach(ta => ta.style.display = 'none');
+        textareas[tabIndex].style.display = 'block';
+      });
+    });
+
+    function updatePreview() {
+      const html = document.getElementById('html-code').value;
+      const css = document.getElementById('css-code').value;
+      const js = document.getElementById('js-code').value;
+      const preview = document.getElementById('preview');
+      const previewDoc = preview.contentDocument || preview.contentWindow.document;
+
+      // Parse HTML to find the checked effect to set the correct initial body class
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      const checkedRadio = tempDiv.querySelector('input[name="preview-effect"]:checked');
+      const bodyClass = checkedRadio ? checkedRadio.value : 'blink';
+
+      previewDoc.open();
+      previewDoc.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>${css}</style>
+        </head>
+        <body class="${bodyClass}">
+          ${html}
+          <script>${js}<\/script>
+        </body>
+        </html>
+      `);
+      previewDoc.close();
+    }
+
+    // Run button - update preview
+    document.querySelector('.run-button').addEventListener('click', updatePreview);
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set up initial tab
+      document.querySelectorAll('.editor-content textarea').forEach(ta => {
+        ta.style.display = 'none';
+      });
+      document.getElementById('html-code').style.display = 'block';
+      
+      // Run initial preview
+      updatePreview();
+    });
+  </script>
+</body>
+</html>
