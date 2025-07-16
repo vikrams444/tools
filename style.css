@@ -84,7 +84,16 @@ main {
     color: #f0c710;
 }
 .card-link:nth-child(6) h2 i {
-    color: #230bbc;
+    color: #bc0ba4;
+}
+.card-link:nth-child(7) h2 i {
+    color: #06e81d;
+}
+.card-link:nth-child(8) h2 i {
+    color: #e4cb50;
+}
+.card-link:nth-child(9) h2 i {
+    color: #09ede9;
 }
 
 
