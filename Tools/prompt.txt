@@ -1,1 +1,0 @@
-create a fully functional calculator with the help of html ,Css and javaScript.
