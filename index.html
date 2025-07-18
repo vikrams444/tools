@@ -12,57 +12,71 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <header class="main-header">
-        <h1><i class="fa fa-wrench"></i> Tool Hub</h1>
+    <header>
+        <div class="header-container container">
+            <h1 class="logo"><i class="fa fa-wrench tool-icon"></i><!-- <span>SPICY444</span> –</span>--> Tool Hub</h1> 
+        
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+                    
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </header>
+ <!-- Tools Section -->
+    <section class="tools-section container" id="tools">
+        <h2 class="section-title">SEO Toolkit</h2>
+        <div class="tools-grid">
+            <a href="./Tools/Calculator.html" class="card-link">
+                <div class="tools-card">
+                    <h2 class="tool-title"><i class="fa fa-calculator" aria-hidden="true"></i> Calculator</h2>
+                    <p>Explore our Calculator tools.</p>
+                </div>
+            </a>
 
-    <main>
-        <a href="./Tools/Calculator.html" class="card-link">
-            <div class="card">
-                <h2><i class="fa fa-calculator" aria-hidden="true"></i> Calculator</h2>
-                <p>Explore our Calculator tools.</p>
-            </div>
-        </a>
+            <a href="./Tools/png to JPG Converter.html" class="card-link">
+                <div class="tools-card">
+                    <h2 class="tool-title"><i class="fa fa-file-image-o" aria-hidden="true"></i> PNG To JPG </h2>
+                    <p>Explore our Image Convertor tools.</p>
+                </div>
+            </a>
 
-        <a href="./Tools/png to JPG Converter.html" class="card-link">
-            <div class="card">
-                <h2><i class="fa fa-file-image-o" aria-hidden="true"></i> PNG To JPG </h2>
-                <p>Explore our Image Convertor tools.</p>
-            </div>
-        </a>
+            <a href="./Tools/image-compressor.html" class="card-link">
+                <div class="tools-card">
+                    <h2 class="tool-title"><i class="fa fa-compress"></i> Image Compression Tool</h2>
+                    <p>Compress your images online.</p>
+                </div>
+            </a>
+    
+            <a href="./Tools/Password generator.html" class="card-link">
+                <div class="tools-card">
+                    <h2 class="tool-title"><i class="fa fa-unlock" aria-hidden="true"></i> Passwords Tool</h2>
+                    <p>Generate random passwords online.</p>
+                </div>
+            </a>
+            <a href="./Tools/Tic Tac Toe.html" class="card-link">
+                <div class="tools-card">
+                    <h2 class="tool-title"><i class="fa fa-optin-monster" aria-hidden="true"></i> Tic Tac Toe</h2>
+                    <p>Play Tic Tac Toe online.</p>
+                </div>
+            </a>
+            <a href="./Tools/code_editor.html" class="card-link">
+                <div class="tools-card">
+                    <h2 class="tool-title"><i class="fa fa-codepen" aria-hidden="true"></i> Code Editor</h2>
+                    <p>Test your code online of Html, Css, Js.</p>
+                </div>
+            </a>
+            <a href="./Tools/translation.html" class="card-link">
+                <div class="tools-card">
+                    <h2 class="tool-title"><i class="fa fa-font" aria-hidden="true"></i> Translation Tool</h2>
+                    <p>Translate your text online.</p>
+                </div>
+            </a>
+        </div>
+    </section>
 
-        <a href="./Tools/image-compressor.html" class="card-link">
-            <div class="card">
-                <h2><i class="fa fa-compress"></i> Image Compression Tool</h2>
-                <p>Compress your images online.</p>
-            </div>
-        </a>
-   
-        <a href="./Tools/Password generator.html" class="card-link">
-            <div class="card">
-                <h2><i class="fa fa-unlock" aria-hidden="true"></i> Passwords Tool</h2>
-                <p>Generate random passwords online.</p>
-            </div>
-        </a>
-        <a href="./Tools/Tic Tac Toe.html" class="card-link">
-            <div class="card">
-                <h2><i class="fa fa-optin-monster" aria-hidden="true"></i> Tic Tac Toe</h2>
-                <p>Play Tic Tac Toe online.</p>
-            </div>
-        </a>
-        <a href="./Tools/code_editor.html" class="card-link">
-            <div class="card">
-                <h2><i class="fa fa-codepen" aria-hidden="true"></i> Code Editor</h2>
-                <p>Test your code online of Html, Css, Js.</p>
-            </div>
-        </a>
-        <a href="./Tools/translation.html" class="card-link">
-            <div class="card">
-                <h2><i class="fa fa-font" aria-hidden="true"></i> Translation Tool</h2>
-                <p>Translate your text online.</p>
-            </div>
-        </a>
-    </main>
 
     <div class="ad-container">
         <aside class="ad-placeholder">
@@ -96,8 +110,68 @@
     </div>
 
     <footer>
-        <p>&copy;SPICY444 2025 Home Page</p>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#tools">Tools</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        <p class="copyright">© 2025 SPICY444 – SEO Toolkit. All rights reserved.</p>
+        </div>
     </footer>
 	<script src=""></script>
+    <script>
+
+    // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the saved theme
+        if (savedTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '☀️';
+        } else {
+            body.removeAttribute('data-theme');
+            themeToggle.textContent = '🌙';
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            if (body.hasAttribute('data-theme')) {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            }
+        });
+        
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+
 </body>
 </html>
